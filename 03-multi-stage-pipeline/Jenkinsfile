@@ -1,18 +1,18 @@
-pipeline{
+pipeline {
     agent any
 
-    parameters{
-        string[name: 'ENV',defaultvalue: 'prod',description: 'This is to test....']
-        }
+    parameters {
+        string(name: 'ENV', defaultValue: 'production', description: 'This is to test....')
+    }
 
-    stages{
-        stage'Build'{
-            steps{
-                sh ...
-                
-                ...
-
+    stages {
+        stage('Build') {
+            steps {
+                sh '''
+                    echo "This is the build stage"
+                    echo "Selected environment: ${ENV}"
+                '''
             }
-        } 
-    }       
-}    
+        }
+    }
+}
