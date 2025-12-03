@@ -1,17 +1,31 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'ENV', defaultValue: 'production', description: 'This is to test....')
-    }
-
     stages {
-        stage('Build') {
-            steps {
-                sh '''
-                    echo "This is the build stage"
-                    echo "Selected environment: ${ENV}"
-                '''
+
+        stage('Build-stage') {
+            stages {
+                stage('checking the code') {
+                    steps {
+                        sh "echo 'Hello world'"
+                    }
+                }
+
+                stage('testing the code') {
+                    steps {
+                        sh "echo 'Hello world'"
+                    }
+                }
+            }
+        }
+
+        stage('deploying the one more env') {
+            stages {
+                stage('deploy to dev') {
+                    steps {
+                        sh 'echo "testing in dev"'
+                    }
+                }
             }
         }
     }
