@@ -1,10 +1,7 @@
-from flask import Flask
+FROM python:3.10-slim
+WORKDIR /app
+COPY . .
+RUN pip install flask
+EXPOSE 5000
+CMD ["python", "app.py"]
 
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return "Hello DevOps 👋 This is a simple Flask app!"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
